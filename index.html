@@ -153,6 +153,17 @@
                 sendMessage();
             }
         });
+        <script src="https://cdn.botpress.cloud/webchat/v1/inject.js"></script>
+        <script>
+          window.botpressWebChat.init({
+            host: "https://cdn.botpress.cloud/webchat/v1",
+            botId: "YOUR_BOT_ID",
+            clientId: "YOUR_CLIENT_ID",  // Only if required
+            messagingUrl: "https://YOUR_BOTPRESS_INSTANCE/api/v1/bots/YOUR_BOT_ID",
+            showPoweredBy: false,
+            enableReset: true
+          });
+
     </script>
 </body>
 </html>
