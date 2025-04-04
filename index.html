@@ -1,208 +1,188 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
-    <meta charset="UTF-8">
-    <title>AI Chat UI</title>
-    <style>
+  <meta charset="UTF-8">
+  <title>AI Chat UI</title>
+  <style>
+    body {
+      font-family: Arial, sans-serif;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      height: 100vh;
+      background-color: black;
+      flex-direction: column;
+      color: white;
+      margin: 0;
+    }
+
+    .ai-avatar {
+      width: 150px;
+      height: 150px;
+      border-radius: 50%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      margin-bottom: 20px;
+    }
+
+    .rotating-compass {
+      width: 100%;
+      height: 100%;
+      border-radius: 50%;
+    }
+
+    .chat-container {
+      width: 100%;
+      max-width: 600px;
+      padding: 0 20px;
+      background: transparent;
+      box-shadow: none;
+      border-radius: 0;
+    }
+
+    .chat-box {
+      height: 300px;
+      overflow-y: auto;
+      border-bottom: 1px solid #444;
+      padding-bottom: 10px;
+      margin-bottom: 10px;
+      display: flex;
+      flex-direction: column;
+    }
+
+    .input-box {
+      display: flex;
+      gap: 5px;
+    }
+
+    .input-box input {
+      flex: 1;
+      padding: 5px;
+      background-color: #333;
+      color: white;
+      border: 1px solid #444;
+    }
+
+    .input-box button {
+      padding: 5px;
+      background-color: #007bff;
+      color: white;
+      border: none;
+      cursor: pointer;
+    }
+
+    .user-message {
+      align-self: flex-end;
+      background-color: #333;
+      padding: 5px 10px;
+      border-radius: 10px;
+      margin: 5px 0;
+      max-width: 80%;
+      text-align: right;
+    }
+
+    .bot-message {
+      align-self: flex-start;
+      background-color: #007bff;
+      color: white;
+      padding: 5px 10px;
+      border-radius: 10px;
+      margin: 5px 0;
+      max-width: 80%;
+      text-align: left;
+    }
+
     #botpress-webchat {
-    display: flex;
-    justify-content: center;
-    margin-top: 10px;
-}
+      display: flex;
+      justify-content: center;
+      margin-top: 10px;
+    }
 
-    /* Replace the existing #bp-web-widget-container styles with this */
-#bp-web-widget-container {
-    position: fixed !important;
-    top: 50% !important;
-    left: 50% !important;
-    transform: translate(-50%, -50%) !important;
-    z-index: 9999 !important;
-    max-width: 300px;
-    width: auto !important;
-    height: auto !important;
-    bottom: auto !important;
-    right: auto !important;
-}
+    #bp-web-widget-container {
+      position: fixed !important;
+      bottom: 20px !important;
+      left: 50% !important;
+      transform: translateX(-50%) !important;
+      z-index: 9999 !important;
+    }
 
-/* Add this to position the actual chat button */
-.bp-widget-launcher {
-    position: relative !important;
-    margin: 0 !important;
-    bottom: auto !important;
-    right: auto !important;
-}
-
-        body {
-            font-family: Arial, sans-serif;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            height: 100vh;
-            background-color: black;
-            flex-direction: column;
-            color: white;
-            margin: 0;
-        }
-
-        .ai-avatar {
-            width: 150px;
-            height: 150px;
-            border-radius: 50%;
-            display: flex;
-            justify-content: center;
-            align-items: center;
-            margin-bottom: 20px;
-            position: relative;
-        }
-
-        .rotating-compass {
-            width: 100%;
-            height: 100%;
-            border-radius: 50%;
-        }
-
-        .chat-container {
-            width: 300px;
-            background: #222;
-            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
-            padding: 20px;
-            border-radius: 10px;
-        }
-
-        .chat-box {
-            height: 300px;
-            overflow-y: auto;
-            border-bottom: 1px solid #444;
-            padding-bottom: 10px;
-            margin-bottom: 10px;
-            display: flex;
-            flex-direction: column;
-        }
-
-        .input-box {
-            display: flex;
-            gap: 5px;
-        }
-
-        .input-box input {
-            flex: 1;
-            padding: 5px;
-            background-color: #333;
-            color: white;
-            border: 1px solid #444;
-        }
-
-        .input-box button {
-            padding: 5px;
-            background-color: #007bff;
-            color: white;
-            border: none;
-            cursor: pointer;
-        }
-        /* Move the floating bubble to the bottom center */
-        #bp-web-widget-container {
-        position: fixed !important;
-        bottom: 20px !important;
-        left: 50% !important;
-        transform: translateX(-50%) !important;
-        z-index: 9999 !important;
-        }
-
-
-        #hello-user {
-            opacity: 0.5;
-            text-align: center;
-            width: 100%;
-        }
-
-        .user-message {
-            align-self: flex-end;
-            background-color: #333;
-            padding: 5px 10px;
-            border-radius: 10px;
-            margin: 5px 0;
-            max-width: 80%;
-            text-align: right;
-        }
-
-        .bot-message {
-            align-self: flex-start;
-            background-color: #007bff;
-            color: white;
-            padding: 5px 10px;
-            border-radius: 10px;
-            margin: 5px 0;
-            max-width: 80%;
-            text-align: left;
-        }
-    </style>
+    .bp-widget-launcher {
+      position: relative !important;
+      margin: 0 !important;
+      bottom: auto !important;
+      right: auto !important;
+    }
+  </style>
 </head>
 <body>
-    <div class="ai-avatar">
-        <img class="rotating-compass" src="https://media0.giphy.com/media/v1.Y2lkPTc5MGI3NjExZHBmZDA5eDdwbWNydWxpYTFrdWpvbmZncnpjMGQybDFrNWdtZThtMCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/7jwvgJqMCEJolFGyIk/giphy.gif" alt="Compass Logo">
+
+  <div class="ai-avatar">
+    <img class="rotating-compass" src="https://media0.giphy.com/media/v1.Y2lkPTc5MGI3NjExZHBmZDA5eDdwbWNydWxpYTFrdWpvbmZncnpjMGQybDFrNWdtZThtMCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/7jwvgJqMCEJolFGyIk/giphy.gif" alt="Compass Logo">
+  </div>
+
+  <div class="chat-container">
+    <div id="chat-box" class="chat-box">
+      <!-- Removed Hello User line -->
+      <div id="botpress-webchat"></div>
     </div>
-    <div class="chat-container">
-        <div id="chat-box" class="chat-box">
-            <div id="hello-user">Hello, User</div>
-            <div id="botpress-webchat"></div>
-        </div>
+    <div class="input-box">
+      <input type="text" id="user-input" placeholder="Type your message..." />
+      <button onclick="sendMessage()">Send</button>
     </div>
+  </div>
 
-    <script>
-        const responses = [
-            "I'm here to help!",
-            "That's interesting!",
-            "Could you tell me more?",
-            "Let's talk about it.",
-            "I'm not sure. Want to use voice?"
-        ];
+  <script>
+    const responses = [
+      "I'm here to help!",
+      "That's interesting!",
+      "Could you tell me more?",
+      "Let's talk about it.",
+      "I'm not sure. Want to use voice?"
+    ];
 
-        function sendMessage() {
-            let input = document.getElementById("user-input");
-            let message = input.value.trim();
-            if (message === "") return;
+    function sendMessage() {
+      let input = document.getElementById("user-input");
+      let message = input.value.trim();
+      if (message === "") return;
 
-            let chatBox = document.getElementById("chat-box");
-            document.getElementById("hello-user").style.display = "none";
+      let chatBox = document.getElementById("chat-box");
 
-            let userMessage = <div class="user-message"><strong>You:</strong> ${message}</div>;
-            chatBox.innerHTML += userMessage;
+      let userMessage = `<div class="user-message"><strong>You:</strong> ${message}</div>`;
+      chatBox.innerHTML += userMessage;
 
-            setTimeout(() => {
-                let botReply = <div class="bot-message"><strong>Bot:</strong> ${responses[Math.floor(Math.random() * responses.length)]}</div>;
-                chatBox.innerHTML += botReply;
-                chatBox.scrollTop = chatBox.scrollHeight;
-            }, 500);
+      setTimeout(() => {
+        let botReply = `<div class="bot-message"><strong>Bot:</strong> ${responses[Math.floor(Math.random() * responses.length)]}</div>`;
+        chatBox.innerHTML += botReply;
+        chatBox.scrollTop = chatBox.scrollHeight;
+      }, 500);
 
-            input.value = "";
-        }
+      input.value = "";
+    }
 
-        function startVoiceInput() {
-            alert("Voice input coming soon!");
-        }
+    document.getElementById("user-input").addEventListener("keypress", function (e) {
+      if (e.key === "Enter") {
+        sendMessage();
+      }
+    });
+  </script>
 
-        document.getElementById("user-input").addEventListener("keypress", function (e) {
-            if (e.key === "Enter") {
-                sendMessage();
-            }
-        });
-    </script>
-    <script src="https://cdn.botpress.cloud/webchat/v2.2/inject.js"></script>
-    <script src="https://files.bpcontent.cloud/2025/04/04/05/20250404053811-3VIICPVS.js"></script>
-    <script>
+  <script src="https://cdn.botpress.cloud/webchat/v2.2/inject.js"></script>
+  <script src="https://files.bpcontent.cloud/2025/04/04/05/20250404053811-3VIICPVS.js"></script>
+  <script>
     window.botpressWebChat.init({
-    host: "https://cdn.botpress.cloud/webchat/v1",
-    botId: "17069c36-9555-4a2f-b78a-dfd170e62139",
-    clientId: "b545de01-7642-43b9-b043-ddcc5f3fb02b",
-    messagingUrl: "https://webhook.botpress.cloud/8624896a-e1e5-427c-8d71-73695016ff84",
-    showPoweredBy: false,
-    enableReset: true,
-    containerWidth: "100%",              // Full width container
-    layout: "embedded",                  // Use embedded layout
-    container: "#botpress-webchat",
-    stylesheet: "https://cdn.botpress.cloud/webchat/v1/themes/default.css" // Optional: use default stylesheet
-  });
-</script>
+      host: "https://cdn.botpress.cloud/webchat/v1",
+      botId: "17069c36-9555-4a2f-b78a-dfd170e62139",
+      clientId: "b545de01-7642-43b9-b043-ddcc5f3fb02b",
+      messagingUrl: "https://webhook.botpress.cloud/8624896a-e1e5-427c-8d71-73695016ff84",
+      showPoweredBy: false,
+      enableReset: true,
+      containerWidth: "100%",
+      layout: "embedded",
+      container: "#botpress-webchat",
+      stylesheet: "https://cdn.botpress.cloud/webchat/v1/themes/default.css"
+    });
+  </script>
 
 </body>
 </html>
