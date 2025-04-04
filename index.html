@@ -73,42 +73,6 @@
         opacity: 1;
       }
     }
-
-    .chat-container {
-      width: 300px;
-      background: #222;
-      box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
-      padding: 20px;
-      border-radius: 10px;
-    }
-
-    .chat-box {
-      height: 300px;
-      overflow-y: auto;
-      display: flex;
-      flex-direction: column;
-    }
-
-    .user-message {
-      align-self: flex-end;
-      background-color: #333;
-      padding: 5px 10px;
-      border-radius: 10px;
-      margin: 5px 0;
-      max-width: 80%;
-      text-align: right;
-    }
-
-    .bot-message {
-      align-self: flex-start;
-      background-color: #007bff;
-      color: white;
-      padding: 5px 10px;
-      border-radius: 10px;
-      margin: 5px 0;
-      max-width: 80%;
-      text-align: left;
-    }
   </style>
 </head>
 <body>
@@ -120,11 +84,8 @@
     <p>🌟 Let's make your local excursions easier!! 🗺️✨</p>
   </div>
 
-  <div class="chat-container">
-    <div id="chat-box" class="chat-box">
-      <div id="botpress-webchat"></div>
-    </div>
-  </div>
+  <!-- Embed Botpress chat directly -->
+  <div id="botpress-webchat"></div>
 
   <script src="https://cdn.botpress.cloud/webchat/v2.2/inject.js"></script>
   <script src="https://files.bpcontent.cloud/2025/04/04/05/20250404053811-3VIICPVS.js"></script>
