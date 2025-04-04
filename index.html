@@ -4,6 +4,17 @@
     <meta charset="UTF-8">
     <title>AI Chat UI</title>
     <style>
+    #botpress-webchat {
+    display: flex;
+    justify-content: center;
+    margin-top: 10px;
+}
+
+    #bp-web-widget-container {
+    max-width: 300px;
+    width: 100%;
+}
+
         body {
             font-family: Arial, sans-serif;
             display: flex;
@@ -107,6 +118,7 @@
     <div class="chat-container">
         <div id="chat-box" class="chat-box">
             <div id="hello-user">Hello, User</div>
+            <div id="botpress-webchat"></div>
         </div>
     </div>
 
@@ -152,14 +164,18 @@
     <script src="https://cdn.botpress.cloud/webchat/v2.2/inject.js"></script>
     <script src="https://files.bpcontent.cloud/2025/04/04/05/20250404053811-3VIICPVS.js"></script>
     <script>
-        window.botpressWebChat.init({
+    window.botpressWebChat.init({
     host: "https://cdn.botpress.cloud/webchat/v1",
     botId: "17069c36-9555-4a2f-b78a-dfd170e62139",
-    clientId: "b545de01-7642-43b9-b043-ddcc5f3fb02b",  // Only if required
+    clientId: "b545de01-7642-43b9-b043-ddcc5f3fb02b",
     messagingUrl: "https://webhook.botpress.cloud/8624896a-e1e5-427c-8d71-73695016ff84",
     showPoweredBy: false,
-    enableReset: true
-  });
+    enableReset: true,
+    containerWidth: "100%",              // Full width container
+    layout: "embedded",                  // Use embedded layout
+    stylesheet: "https://cdn.botpress.cloud/webchat/v1/themes/default.css" // Optional: use default stylesheet
+  });
 </script>
+
 </body>
 </html>
