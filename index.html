@@ -11,6 +11,11 @@
 }
 
     #bp-web-widget-container {
+    position: fixed ;
+    top: 50% ;  /* Changed from bottom: 20px */
+    left: 50% ;
+    transform: translate(-50%, -50%) ;  /* Added vertical translation */
+    z-index: 9999 ;
     max-width: 300px;
     width: 100%;
 }
