@@ -10,6 +10,19 @@
     margin-top: 10px;
 }
 
+    /* Replace the existing #bp-web-widget-container styles with this */
+#bp-web-widget-container {
+    position: fixed !important;
+    top: 50% !important;
+    left: 50% !important;
+    transform: translate(-50%, -50%) !important;
+    z-index: 9999 !important;
+    max-width: 300px;
+    width: auto !important;
+    height: auto !important;
+    bottom: auto !important;
+    right: auto !important;
+}
 
 /* Add this to position the actual chat button */
 .bp-widget-launcher {
@@ -88,9 +101,11 @@
         }
         /* Move the floating bubble to the bottom center */
         #bp-web-widget-container {
-        position: relative !important;
-        margin-top: 10px;
-        transform: none !important;
+        position: fixed !important;
+        bottom: 20px !important;
+        left: 50% !important;
+        transform: translateX(-50%) !important;
+        z-index: 9999 !important;
         }
 
 
