@@ -3,7 +3,102 @@
 <head>
     <meta charset="UTF-8">
     <title>AI Chat UI</title>
-    <link rel="stylesheet" href="styles.css">
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            background-color: black;
+            flex-direction: column;
+            color: white;
+            margin: 0;
+        }
+
+        .ai-avatar {
+            width: 150px;
+            height: 150px;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            margin-bottom: 20px;
+            position: relative;
+        }
+
+        .rotating-compass {
+            width: 100%;
+            height: 100%;
+            border-radius: 50%;
+        }
+
+        .chat-container {
+            width: 300px;
+            background: #222;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+            padding: 20px;
+            border-radius: 10px;
+        }
+
+        .chat-box {
+            height: 300px;
+            overflow-y: auto;
+            border-bottom: 1px solid #444;
+            padding-bottom: 10px;
+            margin-bottom: 10px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .input-box {
+            display: flex;
+            gap: 5px;
+        }
+
+        .input-box input {
+            flex: 1;
+            padding: 5px;
+            background-color: #333;
+            color: white;
+            border: 1px solid #444;
+        }
+
+        .input-box button {
+            padding: 5px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+
+        #hello-user {
+            opacity: 0.5;
+            text-align: center;
+            width: 100%;
+        }
+
+        .user-message {
+            align-self: flex-end;
+            background-color: #333;
+            padding: 5px 10px;
+            border-radius: 10px;
+            margin: 5px 0;
+            max-width: 80%;
+            text-align: right;
+        }
+
+        .bot-message {
+            align-self: flex-start;
+            background-color: #007bff;
+            color: white;
+            padding: 5px 10px;
+            border-radius: 10px;
+            margin: 5px 0;
+            max-width: 80%;
+            text-align: left;
+        }
+    </style>
 </head>
 <body>
     <div class="ai-avatar">
@@ -20,6 +115,44 @@
         </div>
     </div>
 
-    <script src="script.js"></script>
+    <script>
+        const responses = [
+            "I'm here to help!",
+            "That's interesting!",
+            "Could you tell me more?",
+            "Let's talk about it.",
+            "I'm not sure. Want to use voice?"
+        ];
+
+        function sendMessage() {
+            let input = document.getElementById("user-input");
+            let message = input.value.trim();
+            if (message === "") return;
+
+            let chatBox = document.getElementById("chat-box");
+            document.getElementById("hello-user").style.display = "none";
+
+            let userMessage = <div class="user-message"><strong>You:</strong> ${message}</div>;
+            chatBox.innerHTML += userMessage;
+
+            setTimeout(() => {
+                let botReply = <div class="bot-message"><strong>Bot:</strong> ${responses[Math.floor(Math.random() * responses.length)]}</div>;
+                chatBox.innerHTML += botReply;
+                chatBox.scrollTop = chatBox.scrollHeight;
+            }, 500);
+
+            input.value = "";
+        }
+
+        function startVoiceInput() {
+            alert("Voice input coming soon!");
+        }
+
+        document.getElementById("user-input").addEventListener("keypress", function (e) {
+            if (e.key === "Enter") {
+                sendMessage();
+            }
+        });
+    </script>
 </body>
 </html>
