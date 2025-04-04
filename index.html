@@ -121,14 +121,22 @@
 </head>
 <body>
   <div class="ai-avatar">
-    <img class="rotating-compass" src="https://media0.giphy.com/media/v1.Y2lkPTc5MGI3NjExZHBmZDA5eDdwbWNydWxpYTFrdWpvbmZncnpjMGQybDFrNWdtZThtMCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/7jwvgJqMCEJolFGyIk/giphy.gif" alt="Compass Logo" />
+    <img
+      class="rotating-compass"
+      src="https://media0.giphy.com/media/v1.Y2lkPTc5MGI3NjExZHBmZDA5eDdwbWNydWxpYTFrdWpvbmZncnpjMGQybDFrNWdtZThtMCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/7jwvgJqMCEJolFGyIk/giphy.gif"
+      alt="Compass Logo"
+    />
   </div>
 
   <div class="chat-container">
     <div id="chat-box" class="chat-box">
       <div id="hello-user">Hello, User</div>
+      <div id="botpress-webchat"></div>
     </div>
-    <div id="botpress-webchat"></div>
+    <div class="input-box">
+      <input type="text" id="user-input" placeholder="Type a message..." />
+      <button onclick="sendMessage()">Send</button>
+    </div>
   </div>
 
   <script>
@@ -152,7 +160,9 @@
       chatBox.innerHTML += userMessage;
 
       setTimeout(() => {
-        let botReply = `<div class="bot-message"><strong>Bot:</strong> ${responses[Math.floor(Math.random() * responses.length)]}</div>`;
+        let botReply = `<div class="bot-message"><strong>Bot:</strong> ${
+          responses[Math.floor(Math.random() * responses.length)]
+        }</div>`;
         chatBox.innerHTML += botReply;
         chatBox.scrollTop = chatBox.scrollHeight;
       }, 500);
@@ -160,33 +170,18 @@
       input.value = "";
     }
 
+    document.getElementById("user-input").addEventListener("keypress", function (e) {
+      if (e.key === "Enter") {
+        sendMessage();
+      }
+    });
+
     function startVoiceInput() {
       alert("Voice input coming soon!");
     }
-
-    document.addEventListener("DOMContentLoaded", () => {
-      const input = document.createElement("input");
-      input.id = "user-input";
-      input.placeholder = "Type a message...";
-      const button = document.createElement("button");
-      button.textContent = "Send";
-      button.onclick = sendMessage;
-
-      const inputBox = document.createElement("div");
-      inputBox.className = "input-box";
-      inputBox.appendChild(input);
-      inputBox.appendChild(button);
-
-      document.querySelector(".chat-container").appendChild(inputBox);
-
-      input.addEventListener("keypress", function (e) {
-        if (e.key === "Enter") {
-          sendMessage();
-        }
-      });
-    });
   </script>
 
+  <!-- Botpress Webchat -->
   <script src="https://cdn.botpress.cloud/webchat/v2.2/inject.js"></script>
   <script src="https://files.bpcontent.cloud/2025/04/04/05/20250404053811-3VIICPVS.js"></script>
   <script>
