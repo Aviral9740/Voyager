@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>AI Chat UI</title>
+    <link rel="stylesheet" href="styles.css">
+</head>
+<body>
+    <div class="ai-avatar">
+        <img class="rotating-compass" src="https://media0.giphy.com/media/v1.Y2lkPTc5MGI3NjExZHBmZDA5eDdwbWNydWxpYTFrdWpvbmZncnpjMGQybDFrNWdtZThtMCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/7jwvgJqMCEJolFGyIk/giphy.gif" alt="Compass Logo">
+    </div>
+    <div class="chat-container">
+        <div id="chat-box" class="chat-box">
+            <div id="hello-user">Hello, User</div>
+        </div>
+        <div class="input-box">
+            <input type="text" id="user-input" placeholder="Type a message...">
+            <button onclick="sendMessage()">Send</button>
+            <button onclick="startVoiceInput()">🎤</button>
+        </div>
+    </div>
+
+    <script src="script.js"></script>
+</body>
+</html>
