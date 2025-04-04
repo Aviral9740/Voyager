@@ -82,6 +82,15 @@
             border: none;
             cursor: pointer;
         }
+        /* Move the floating bubble to the bottom center */
+        #bp-web-widget-container {
+        position: fixed !important;
+        bottom: 20px !important;
+        left: 50% !important;
+        transform: translateX(-50%) !important;
+        z-index: 9999 !important;
+        }
+
 
         #hello-user {
             opacity: 0.5;
