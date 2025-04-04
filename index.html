@@ -32,50 +32,90 @@
             height: 100%;
             border-radius: 50%;
         }
-        <script src="https://cdn.botpress.cloud/webchat/v2.3/inject.js"></script>
-          #webchat .bpWebchat {
-            position: unset;
-            width: 100%;
-            height: 100%;
-            max-height: 100%;
-            max-width: 100%;
-          }
 
-          #webchat .bpFab {
-            display: none;
-          }
+        .chat-container {
+            width: 300px;
+            background: #222;
+            box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.5);
+            padding: 20px;
+            border-radius: 10px;
+        }
+
+        .chat-box {
+            height: 300px;
+            overflow-y: auto;
+            border-bottom: 1px solid #444;
+            padding-bottom: 10px;
+            margin-bottom: 10px;
+            display: flex;
+            flex-direction: column;
+        }
+
+        .input-box {
+            display: flex;
+            gap: 5px;
+        }
+
+        .input-box input {
+            flex: 1;
+            padding: 5px;
+            background-color: #333;
+            color: white;
+            border: 1px solid #444;
+        }
+
+        .input-box button {
+            padding: 5px;
+            background-color: #007bff;
+            color: white;
+            border: none;
+            cursor: pointer;
+        }
+
+        #hello-user {
+            opacity: 0.5;
+            text-align: center;
+            width: 100%;
+        }
+
+        .user-message {
+            align-self: flex-end;
+            background-color: #333;
+            padding: 5px 10px;
+            border-radius: 10px;
+            margin: 5px 0;
+            max-width: 80%;
+            text-align: right;
+        }
+
+        .bot-message {
+            align-self: flex-start;
+            background-color: #007bff;
+            color: white;
+            padding: 5px 10px;
+            border-radius: 10px;
+            margin: 5px 0;
+            max-width: 80%;
+            text-align: left;
+        }
     </style>
 </head>
 <body>
     <div class="ai-avatar">
         <img class="rotating-compass" src="https://media0.giphy.com/media/v1.Y2lkPTc5MGI3NjExZHBmZDA5eDdwbWNydWxpYTFrdWpvbmZncnpjMGQybDFrNWdtZThtMCZlcD12MV9pbnRlcm5hbF9naWZfYnlfaWQmY3Q9Zw/7jwvgJqMCEJolFGyIk/giphy.gif" alt="Compass Logo">
     </div>
-    <div id="webchat" style="width: 500px; height: 500px;"></div>
+    <div class="chat-container">
+        <div id="chat-box" class="chat-box">
+            <div id="hello-user">Hello, User</div>
+        </div>
+        <div class="input-box">
+            <input type="text" id="user-input" placeholder="Type a message...">
+            <button onclick="sendMessage()">Send</button>
+            <button onclick="startVoiceInput()">🎤</button>
+        </div>
+    </div>
 
     <script>
-          window.botpress.on("webchat:ready", () => {
-    window.botpress.open();
-  });
-  window.botpress.init({
-  "botId": "17069c36-9555-4a2f-b78a-dfd170e62139",
-  "configuration": {
-    "botName": "voyager",
-    "botDescription": "Travel excursions made easy!!",
-    "website": {},
-    "email": {},
-    "phone": {},
-    "termsOfService": {},
-    "privacyPolicy": {},
-    "color": "#3B82F6",
-    "variant": "solid",
-    "themeMode": "light",
-    "fontFamily": "inter",
-    "radius": 1,
-    "allowFileUpload": false
-  },
-  "clientId": "b545de01-7642-43b9-b043-ddcc5f3fb02b",
-  "selector": "#webchat"
-});
         const responses = [
             "I'm here to help!",
             "That's interesting!",
@@ -113,18 +153,6 @@
                 sendMessage();
             }
         });
-        <script src="https://cdn.botpress.cloud/webchat/v1/inject.js"></script>
-        <script>
-          window.botpressWebChat.init({
-            host: "https://cdn.botpress.cloud/webchat/v1",
-            botId: "17069c36-9555-4a2f-b78a-dfd170e62139",
-            //clientId: "YOUR_CLIENT_ID",   Only if required
-            messagingUrl: "https://YOUR_BOTPRESS_INSTANCE/api/v1/bots/YOUR_BOT_ID",
-            showPoweredBy: false,
-            enableReset: true
-          });
-
     </script>
-    
 </body>
 </html>
